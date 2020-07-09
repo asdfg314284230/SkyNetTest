@@ -1,0 +1,31 @@
+serverdir = "$SERVERDIR"
+authport = "$AUTHPORT"
+gameport = "$GAMEPORT"
+database = "$DATABASE"
+
+logger = nil
+logpath = "."
+
+
+
+
+thread = 8
+harbor = 0
+
+start = "main"
+
+bootstrap = "snlua bootstrap"   -- The service for bootstrap
+
+luaservice = "./service/?.lua;../test_fwk/service/?.lua"
+
+lualoader = "lualib/loader.lua"
+
+cpath = "./cservice/?.so"
+
+lua_path = "./lualib/?.lua;./lualib/?/init.lua"
+lua_path = lua_path .. ";../test_fwk/game/?.lua"
+lua_path = lua_path .. ";" .. serverdir .. "/src/?.lua"
+lua_path = lua_path .. ";" .. serverdir .. "/?.lua"
+
+---
+--daemon = serverdir .. "/skynet.pid"                                
