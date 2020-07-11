@@ -16,7 +16,7 @@ start = "main"
 
 bootstrap = "snlua bootstrap"   -- The service for bootstrap
 
-luaservice = "./service/?.lua;../test_fwk/service/?.lua"
+luaservice = "./service/?.lua;./SkyNetTest/test_fwk/service/?.lua"
 
 lualoader = "lualib/loader.lua"
 
@@ -26,6 +26,3 @@ lua_path = "./lualib/?.lua;./lualib/?/init.lua"
 lua_path = lua_path .. ";../test_fwk/game/?.lua"
 lua_path = lua_path .. ";" .. serverdir .. "/src/?.lua"
 lua_path = lua_path .. ";" .. serverdir .. "/?.lua"
-
----
---daemon = serverdir .. "/skynet.pid"                                
