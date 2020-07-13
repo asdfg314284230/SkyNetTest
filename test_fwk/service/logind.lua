@@ -7,7 +7,7 @@ local skynet = require "skynet"
 
 -- 传进去的配置表
 local server = {
-	host = "127.0.0.1",
+	host = "0.0.0.1",
 	port = 8001,
 	multilogin = false, -- disallow multilogin
 	name = "login_master"
