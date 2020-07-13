@@ -12,7 +12,7 @@ skynet.start(
             "lua",
             "open",
             {
-                address = "0.0.0.1",
+                address = "0.0.0.0",
                 port = 8888,
                 maxclient = 64,
                 servername = "sample"
