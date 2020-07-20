@@ -55,6 +55,8 @@ function server.login_handler(server, uid, secret)
 	-- 通知服务上线
 	local subid = tostring(skynet.call(gameserver, "lua", "login", uid, secret))
 	
+	print("玩家上线 ... logind")
+
 	-- 存储玩家登录的服
 	user_online[uid] = {address = gameserver, subid = subid, server = server}
 	return subid

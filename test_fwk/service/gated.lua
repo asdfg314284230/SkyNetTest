@@ -17,16 +17,18 @@ function server.login_handler(uid, secret)
 	end
 
 	internal_id = internal_id + 1
-	local id = internal_id	-- don't use internal_id directly
+	local id = internal_id -- don't use internal_id directly
+
 	local username = msgserver.username(uid, id, servername)
 
+	
 	-- you can use a pool to alloc new agent
 	local agent = skynet.newservice "msgagent"
 	local u = {
 		username = username,
 		agent = agent,
 		uid = uid,
-		subid = id,
+		subid = id
 	}
 
 	-- trash subid (no used)
@@ -38,6 +40,9 @@ function server.login_handler(uid, secret)
 	msgserver.login(username, secret)
 
 	-- you should return unique subid
+
+	print("player .. gated")
+
 	return id
 end
 
@@ -50,7 +55,7 @@ function server.logout_handler(uid, subid)
 		msgserver.logout(u.username)
 		users[uid] = nil
 		username_map[u.username] = nil
-		skynet.call(loginservice, "lua", "logout",uid, subid)
+		skynet.call(loginservice, "lua", "logout", uid, subid)
 	end
 end
 
@@ -75,6 +80,9 @@ end
 
 -- call by self (when recv a request from client)
 function server.request_handler(username, msg)
+	print("接收消息 .. " .. username)
+	print(msg)
+
 	local u = username_map[username]
 	return skynet.tostring(skynet.rawcall(u.agent, "client", msg))
 end
@@ -86,4 +94,3 @@ function server.register_handler(name)
 end
 
 msgserver.start(server)
-

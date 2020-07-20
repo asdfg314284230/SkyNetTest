@@ -18,12 +18,16 @@ function CMD.login(source, uid, sid, secret)
 	userid = uid
 	subid = sid
 	-- you may load user data from database
+
+	print("加载用户数据信息")
 end
 
 local function logout()
 	if gate then
 		skynet.call(gate, "lua", "logout", userid, subid)
 	end
+	
+	print("玩家登出")
 	skynet.exit()
 end
 
@@ -34,6 +38,7 @@ function CMD.logout(source)
 end
 
 function CMD.afk(source)
+	print("玩家afk")
 	-- the connection is broken, but the user may back
 	skynet.error(string.format("AFK"))
 end
@@ -47,6 +52,13 @@ skynet.start(function()
 
 	skynet.dispatch("client", function(_,_, msg)
 		-- the simple echo service
+
+		print("client消息" .. msg)
+
+		-- 理论上在这里的步骤可以在根据自己的解包方法在解一次包
+
+
+
 		skynet.sleep(10)	-- sleep a while
 		skynet.ret(msg)
 	end)
